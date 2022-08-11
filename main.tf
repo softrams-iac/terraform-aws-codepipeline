@@ -35,8 +35,8 @@ resource "aws_codepipeline" "pipeline" {
         provider         = stage.value.provider
         run_order        = stage.key + 1
         version          = "1"
-        input_artifacts  = stage.value.inputs
-        output_artifacts = stage.value.outputs
+        input_artifacts  = lookup(var.stages, "inputs", null)
+        output_artifacts = lookup(var.stages, "outputs", null)
       }
     }
   }
